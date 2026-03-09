@@ -1,625 +1,210 @@
-Practical No.:1 
 
-
-
-Aim: Introduction to Android, introduction to Android Studio IDE, Application Fundamentals: Creating a project, android components, activities, services, content providers, broadcast receivers, interface overview, creating android virtual device, USB debugging mode, Android Application overview. Simple 
-“Hello World” program.
-
-
-
-Input: 
-activity_main.xml:  
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout     xmlns:android="http://schemas.android.com/apk/res/android"     android:id="@+id/main"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:gravity="center"> 
  
-    <TextView         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="Hello World!"         android:textSize="30sp"         android:textColor="@color/black"/> 
- 
-</LinearLayout> 
+Practical 1 
+
+
+Aim: Perform the analysis for the following. 
+A.	Import the data warehouse data in MS-EXCEL & create the Pivot Table and Pivot chart.  
+B.	Import the cube in MS-EXCEL and create the pivot table and pivot chart.  
+
+
+STEPS :- 
+Step 1: Open Microsoft excel 2007. 
   
-
-
+      Step 2: Enter the values into the table which you are creating. 
  
-Practical: 2 
-
-
-
-
-Aim: Programming resources, Android resources, color, theme, strain, Drawable, Dimension, Image. 
-
-
-
-Input:  
-string.xml: <resources> 
-    <string name="app_title">Resource Demo App</string> 
-    <string name="welcome_msg">Hello, Welcome to Resource Practical!</string> </resources> 
- 
-colors.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<resources> 
-    <color name="myPurple">#6200EE</color> 
-    <color name="myGreen">#4CAF50</color> 
-</resources> 
- 
-dimensions.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<resources> 
-    <dimen name="text_large">24sp</dimen> 
-    <dimen name="padding_big">16dp</dimen> 
-</resources> 
- 
-round_button.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"     android:shape="rectangle">     <corners android:radius="12dp"/> 
-    <solid android:color="@color/myPurple"/> 
-    <padding 
-        android:left="12dp"         android:right="12dp"         android:top="8dp"         android:bottom="8dp"/> 
-</shape> 
- 
-activity_main.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:orientation="vertical"> 
- 
- 
-    <TextView         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="@string/welcome_msg"         android:textColor="@color/myGreen"         android:textSize="@dimen/text_large"         android:padding="@dimen/padding_big" /> 
- 
-    <ImageView         android:layout_width="200dp"         android:layout_height="200dp"         android:layout_marginTop="16dp"         android:src="@drawable/cat"         android:adjustViewBounds="true" /> 
- 
-    <Button         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="Click Me"         android:layout_marginTop="24dp"         android:background="@drawable/round_button" /> 
-</LinearLayout> Output:  
-  
- 
- 
- 
- 
-Practical: 3 
-
-
-
-
-Aim: Programming Activities and Fragments: Activity Life Cycle, Activity Methods, Multiple Activities, Life Cycle of Fragments and Multiple Fragments. 
-
-
-
-Input: 
-MainActivity.java 
-package com.example.activityfragementdemo; import 	android.content.Intent; import android.os.Bundle; 
-importAandroidx.appcompat.app.AppCompatActivity; 
-import android.util.Log; import 	android.widget.Button; import android.widget.Toast; 
- 
-public class MainActivity extends AppCompatActivity{  
-String TAG = "ActivityLifeCycle"; 
-@Override protected void onCreate(Bundle savedInstanceState) {  super.onCreate(savedInstanceState); 
-setContentView(R.layout.activity_main); 
-Toast.makeText(this, 	"onCreate 	called", 	Toast.LENGTH_SHORT).show(); Log.d(TAG, "onCreate called"); 
- 
-Button 	btnSecond 	= 	findViewById(R.id.btnOpenSecond); btnSecond.setOnClickListener(v -> { 
-Intent 	i 	= 	new 	Intent(MainActivity.this, 	SecondActivity.class); startActivity(i); 
-}); 
-Button btnFrag1 = findViewById(R.id.btnFrag1); 
-Button btnFrag2 = findViewById(R.id.btnFrag2); 
-btnFrag1.setOnClickListener(v 	-> 	{ getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContai ner, 
-new FirstFragment()).commit(); 
- 
-}); 
-btnFrag2.setOnClickListener(v 	-> 	{ getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContai ner, 
-new SecondFragment()).commit(); 
-}); 
-} 
-@Override 
-protected void onStart() {  super.onStart(); 
-Toast.makeText(this, 	"onStart 	called", 	Toast.LENGTH_SHORT).show(); Log.d(TAG, "onStart called"); 
-} 
-@Override protected void onResume() {  super.onResume(); 
-Toast.makeText(this, "onResume called", Toast.LENGTH_SHORT).show(); Log.d(TAG, "onResume called"); 
-} 
-@Override 
-protected void onPause(){  super.onPause(); 
-Toast.makeText(this, "onPause called", Toast.LENGTH_SHORT).show(); Log.d(TAG, "onPause called"); 
-} 
-@Override protected void onStop(){  super.onStop(); 
-Toast.makeText(this, 	"onStop 	called", 	Toast.LENGTH_SHORT).show(); Log.d(TAG, "onStop called"); 
-} 
-@Override 
-Protected void onRestart(){  super.onRestart(); 
-Toast.makeText(this, "onRestart called", Toast.LENGTH_SHORT).show(); Log.d(TAG, "onRestart called"); 
-} 
-@Override 
-protected void onDestroy(){  super.onDestroy(); 
-Toast.makeText(this, "onDestroy called", Toast.LENGTH_SHORT).show(); 
-Log.d(TAG, "onDestroy called"); 
-} 
- 
-activity_main.xml 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="20dp"> 
-<Button android:id="@+id/btnOpenSecond" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Open Second Activity" android:layout_marginTop="10dp"/> 
-<Button android:id="@+id/btnFrag1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Load Fragment 1" android:layout_marginTop="10dp"/> 
-<Button android:id="@+id/btnFrag2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Load Fragment 2" android:layout_marginTop="10dp"/> 
-<FrameLayout android:id="@+id/fragmentContainer" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:background="#E0E0E0" android:layout_marginTop="20dp"/> 
-</LinearLayout> activity_second.xml 
-<?xml version="1.0" encoding="utf-8"?> 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="20dp"> 
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="This is Second Activity" android:textSize="22sp" android:layout_centerInParent="true"/> 
-</RelativeLayout> fragment_first.xml 
-<?xml version="1.0" encoding="utf-8"?> 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#FFA726"> 
- 
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="First Fragment" android:textSize="22sp" android:layout_gravity="center"/> 
-</FrameLayout> 
- 
-FirstFragment.java 
-package com.example.activityfragementdemo; import android.content.Context; import android.os.Bundle; import androidx.fragment.app.Fragment; import android.util.Log; import android.view.LayoutInflater; 
-import android.view.View; import android.view.ViewGroup; public class FirstFragment extends Fragment{ 
-String TAG = "FRAGMENT1" 
-@Override public void onAttach(Context context) { super.onAttach(context); Log.d(TAG, "onAttach"); 
-} 
-@Override public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); Log.d(TAG, "onCreate"); 
-} 
-@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { 
-Log.d(TAG, "onCreateView"); 
-return inflater.inflate(R.layout.fragment_first, container, false); 
-} 
-@Override public void onStart() { super.onStart(); 
-Log.d(TAG, "onStart"); 
-} 
-@Override public void onResume() { 
-super.onResume(); Log.d(TAG, "onResume"); 
-} 
-@Override 
-public void onPause() { 
-super.onPause(); Log.d(TAG, "onPause"); 
-} 
-@Override public void onStop() { 
-super.onStop(); Log.d(TAG, "onStop"); 
-} 
-@Override public void onDestroyView() { super.onDestroyView(); 
-Log.d(TAG, "onDestroyView"); 
-} 
-@Override public void onDestroy() { 
-super.onDestroy(); Log.d(TAG, "onDestroy"); 
-} 
-@Override public void onDetach() { 
-super.onDetach(); Log.d(TAG, "onDetach"); 
-} 
-fragment_second.xml 
-<?xml version="1.0" encoding="utf-8"?> 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#FFA726"> 
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Second Fragment" android:textSize="22sp" android:layout_gravity="center"/> 
-</FrameLayout> 
- 
-SecondFragment.java 
-package com.example.activityfragementdemo; import android.content.Context; import android.os.Bundle; import androidx.fragment.app.Fragment; import android.util.Log; import android.view.LayoutInflater; import android.view.View; import android.view.ViewGroup; public class SecondFragment extends Fragment{ 
-String TAG = "FRAGMENT2" 
-@Override public void onAttach(Context context) { super.onAttach(context); Log.d(TAG, "onAttach"); 
-} 
-@Override public void onCreate(Bundle savedInstanceState) { 
-super.onCreate(savedInstanceState); 
-Log.d(TAG, "onCreate"); 
-} 
-@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { 
-Log.d(TAG, "onCreateView"); 
-return inflater.inflate(R.layout.fragment_second, container, false); 
-} 
-@Override public void onStart() { super.onStart(); 
-Log.d(TAG, "onStart"); 
-} 
-@Override public void onResume() { 
-super.onResume(); Log.d(TAG, "onResume"); 
-} 
-@Override public void onPause() { 
-super.onPause(); Log.d(TAG, "onPause"); 
-} 
-@Override public void onStop() { 
-super.onStop(); Log.d(TAG, "onStop"); 
-} 
-@Override public void onDestroyView() { super.onDestroyView(); 
-Log.d(TAG, "onDestroyView"); 
-} 
-@Override public void onDestroy() { 
-super.onDestroy(); Log.d(TAG, "onDestroy"); 
-} 
-@Override public void onDetach() { 
-super.onDetach(); Log.d(TAG, "onDetach");} 
- 
- 
- 
- 
- 
- 
-Practical: 4
-
-
-
-
-Aim: Programs related to different layouts: Coordinator, linear, relative, table, absolute, frame, listview, gridview.
-
-
-
-
-<?xml version="1.0" encoding="utf-8"?> 
-<androidx.coordinatorlayout.widget.CoordinatorLayout     xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent"     xmlns:app="http://schemas.android.com/apk/res-auto">     <com.google.android.material.appbar.AppBarLayout         android:layout_width="match_parent"         android:layout_height="match_parent"> 
-        <com.google.android.material.appbar.MaterialToolbar             android:layout_width="match_parent"             android:layout_height="match_parent"             app:title="Coordinator Layout"/> 
-    </com.google.android.material.appbar.AppBarLayout> 
-</androidx.coordinatorlayout.widget.CoordinatorLayout> 
- 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout     xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:orientation="vertical"     android:gravity="center"     android:padding="20dp"> 
- 
-    <TextView         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="linear layout Example"         android:textSize="20sp"/> 
-    <Button         android:layout_width="match_parent"         android:layout_height="wrap_content"         android:text="Click Me"/> 
-</LinearLayout> 
-<?xml version="1.0" encoding="utf-8"?> 
-<RelativeLayout     xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:gravity="center"> 
-    <TextView         android:id="@+id/title"         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="Relative layout Example"         android:layout_centerHorizontal="true"         android:textSize="20sp"/> 
-    <Button         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:layout_centerInParent="true"         android:layout_below="@+id/title"         android:text="Click Me"/> 
-</RelativeLayout> 
- 
-<?xml version="1.0" encoding="utf-8"?> 
-<TableLayout     xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="wrap_content"     android:stretchColumns="1"     android:padding="10dp"> 
-<TableRow>     <TextView         android:text="Name"         android:background="@drawable/border"         android:padding="10dp"         android:textSize="18sp"/> 
-    <TextView         android:text="Designation"         android:background="@drawable/border"         android:padding="10dp"         android:textSize="18sp"/> 
-</TableRow> 
-    <TableRow>     <TextView         android:text="Course"         android:background="@drawable/border"         android:padding="10dp"  /> 
-    <TextView         android:text="Age"         android:background="@drawable/border"         android:padding="10dp"/> 
-   </TableRow> </TableLayout> boarder.xml 
-<?xml version="1.0" encoding="utf-8"?> 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"> 
-<stroke 
-    android:color="#000000"     android:width="1dp"/> 
-    <padding         android:left="4dp"         android:right="4dp"         android:top="4dp"         android:bottom="4dp"/> 
-</shape> 
-<?xml version="1.0" encoding="utf-8"?> 
-<ListView     xmlns:android="http://schemas.android.com/apk/res/android"     android:id="@+id/listView"     android:layout_width="match_parent"     android:layout_height="match_parent"> 
-</ListView> MainActivity.java package com.example.layoutdemo; import android.os.Bundle; import android.widget.ArrayAdapter; import android.widget.ListView; import androidx.appcompat.app.AppCompatActivity; public class MainActivity extends AppCompatActivity { 
-    ListView listView; 
-    String items[]={"mango","apple","banana","strawberry","kiwi"}; 
-    @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         listView = findViewById(R.id.listView); 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items); 
-        listView.setAdapter(adapter); 
-} 
-} 
-<?xml version="1.0" encoding="utf-8"?> 
-<GridView     xmlns:android="http://schemas.android.com/apk/res/android"     android:id="@+id/gridView"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:numColumns="2"     android:horizontalSpacing="10dp"     android:verticalSpacing="10dp"> 
-</GridView> MainActivity.java: 
-package com.example.layoutdemo; import android.os.Bundle; import android.widget.ArrayAdapter; import android.widget.GridView; import android.widget.ListView; import androidx.appcompat.app.AppCompatActivity; public class MainActivity extends AppCompatActivity { 
-    GridView gridView; 
-    String items[]={"mango","apple","banana","strawberry","kiwi"}; 
-    @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         gridView = findViewById(R.id.gridView); 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items);         gridView.setAdapter(adapter); 
-    } 
-    }        
-  
+Step 3: Select all the table and go to the insert option and create the pivot table or chart both. 
    
+Step 4: Select the table cell which you want to create the pivot table. 
  
+Step 5: After the pivot table is done click on the pivot chart and select the different kind of graph you want. 
+
+
   
-Practical: 5 
+  
+Practical 2 
+Aim:Apply the what – if Analysis for data visualization. Design and generate necessary reports based on the data warehouse data. Use Excel. 
+
+
+STEPS:- A book store and have 100 books in storage. You sell a certain % for the highest price of $50 and a certain % for the lower price of $20. 
+  
+If you sell 60% for the highest price, cell D10 calculates a total profit of 60 * 50 + 40 * 20 = 3800.  
+Create Different Scenarios But what if you sell 70% for the highest price? And what if you sell 80% for the highest price? Or 90%, or even 100%? Each different percentage is a different scenario. You can use the Scenario Manager to create these scenarios.  
+Note: To type different percentage into cell C4 to see the corresponding result of a scenario in cell D10 we use what if analysis. What-if analysis enables you to easily compare the results of differentscenarios. 
 
 
 
-
-Aim:Programming UI element-Appbar,Fragment,UI Component. 
-
-
-
-
-Input: 
-activity_main.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     xmlns:app="http://schemas.android.com/apk/res-auto"     android:id="@+id/main"     android:layout_width="match_parent"     android:layout_height="match_parent"    android:orientation="vertical">     <androidx.appcompat.widget.Toolbar         android:layout_width="match_parent"         android:layout_height="wrap_content"         android:id="@+id/toolbar"         android:background="@color/purple_500"         app:title="My AppBar"         android:titleTextColor="android:color/white"/> 
-    <FrameLayout         android:layout_width="match_parent"         android:layout_height="match_parent"         android:id="@+id/fragment_container"/> 
-</LinearLayout> colors.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<resources> 
-    <color name="purple_500">#6200EE</color> 
-    <color name="purple_700">#3700B3</color> 
-    <color name="teal_200">#03DAC5</color> 
-</resources> 
+Step 1: In Excel, On the Data tab, in the Data tools group, click What-If Analysis
  
-fragment_home.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     xmlns:tools="http://schemas.android.com/tools"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:layout_gravity="center"     android:orientation="vertical"> 
-    <TextView         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:id="@+id/textViewHome"         android:text="This Home Fragment"         android:textSize="22sp"/> 
-    <Button         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:id="@+id/btnGo"         android:text="Go to second Fragment"         android:layout_marginTop="20dp"/> 
-</LinearLayout> 
+Step 2: Click on What –if-Analysis and selectscenario manager. 
+  
+The Scenario Manager Dialog box appears. 
+Step 3: Add a scenario by clicking on Add. 
  
-fragment_second.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     xmlns:tools="http://schemas.android.com/tools"     android:layout_width="match_parent"     android:layout_height="match_parent"    android:gravity="center"     android:orientation="vertical"> 
-    <!-- TODO: Update blank fragment layout --> 
-    <TextView 
-        android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="this is Second fragment"         android:textSize="22sp"/> 
-</LinearLayout> 
+Step 4: Type a name (60percent), select cell F10 (% sold for the highest price) for the Changing cells and click on OK. Click on icon which is circled.
+  
+Select F10 cell.
  
-SecondFragment.java: package com.example.pr4; import android.os.Bundle; import androidx.fragment.app.Fragment; import android.view.LayoutInflater; import android.view.View; import android.view.ViewGroup; public class SecondFragment extends Fragment { 
-    @Override     public 	View 	onCreateView(LayoutInflater 	inflater,ViewGroup 	container,Bundle savedInstanceState) 
-    { 
-        return inflater.inflate(R.layout.fragment_second, container, false); 
-    } 
-} 
+Click back on the icon again and then click OK 
+  
+Step 5: Enter the corresponding value 0.6 and click on OK again. 
  
-HomeFragment.java: 
-package com.example.pr4; import android.os.Bundle; import androidx.fragment.app.Fragment; import android.view.LayoutInflater; import android.view.View; import android.view.ViewGroup; import android.widget.Button; 
-import androidx.fragment.app.FragmentTransaction; public class HomeFragment extends Fragment { 
-   @Override     public 	View 	onCreateView(LayoutInflater 	inflater,ViewGroup 	container,Bundle savedInstanceState) 
-   { 
-       View View=inflater.inflate(R.layout.fragment_home, container, false);        Button btn= getView().findViewById(R.id.btnGo);        btn.setOnClickListener(v->{FragmentTransaction  transaction= getParentFragmentManager().beginTransaction();        transaction.replace(R.id.fragment_container,new SecondFragment());        transaction.commit(); 
-       });        return View; 
-   } 
-} 
-MainActivity.java: 
-package com.example.pr4; import android.os.Bundle; import androidx.activity.EdgeToEdge; import androidx.appcompat.app.AppCompatActivity; import androidx.core.graphics.Insets; import androidx.core.view.ViewCompat; import androidx.core.view.WindowInsetsCompat; import androidx.fragment.app.Fragment; public class MainActivity extends AppCompatActivity { 
-    @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         loadFragment(new HomeFragment()); 
-    } 
-    private void loadFragment(Fragment fragment) 
-    { 
-getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment ).commit(); 
-    } 
-} 
-activity_main.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     xmlns:app="http://schemas.android.com/apk/res-auto"     android:id="@+id/main" 
-    android:layout_width="match_parent"     android:layout_height="match_parent"    android:orientation="vertical">     <androidx.appcompat.widget.Toolbar         android:layout_width="match_parent"         android:layout_height="wrap_content"         android:id="@+id/toolbar"         android:background="@color/purple_500"         app:title="My AppBar"         android:titleTextColor="@android:color/white"/> 
-    <FrameLayout         android:layout_width="match_parent"         android:layout_height="match_parent"         android:id="@+id/fragment_container"/> 
-</LinearLayout> 
+Step 6: To apply scenarios click on Show 
+  
+Step 7: Next, add 4 other scenarios (70%, 80%, 90% and 100%) Finally, your Scenario Manager should be consistent with the picture below: 
+  
+ 
+ 
+ 
+
+Practical 3 
+
+
+Aim: Implementation of Classification algorithm in R Programming. 
+
+
+Code:
+rainfall<-c(799,1174.8,865.1,1334.6,635.4,918.5,685.5,998.6,784.2,985,882.8,1071)
+rainfall.timeseries <- ts(rainfall,start = c(2012,1),frequency= 12)
+print(rainfall.timeseries) 
+png(file = "rainfall.png")
+plot(rainfall.timeseries)
+dev.off() Output: 
+ 
+
+ 
+Practical 4 
+
+
+Aim: Perform the data clustering using clustering algorithm (clusterning:K-means algorithm). 
+
+
+Code: 
+newiris <- iris  
+newiris$Species <- NULL  
+(kc <- kmeans(newiris,3)) 
+  
+table(iris$Species,kc$cluster) 
+  
+plot(newiris[c("Sepal.Length","Sepal.Width")],col=kc$cluster)   points(kc$centers[,c("Sepal.Length","Sepal.Width")],col=1:3,pch=8,cex=2)  
+dev.off() 
  
 
 
 
-Practical: 6 Aim:Programming menus,dialog,dialog fragment. 
+ 
+Practical 5 
 
 
+Aim: Perform the Linear regression on the given data warehouse data using R/Python. 
 
 
+Code: 
+x <- c(151, 174, 138, 186, 128, 136, 179, 163, 152, 131) y <- c(63, 81, 56, 91, 47, 57, 76, 72, 62, 48) relation <- lm(y~x)  
+print(relation) 
+  
+a <- data.frame(x = 170)  result <- predict(relation,a)  
+print(result) 
+png(file = "linearregression.png") 
+plot(y,x,col = "blue",main = "Height & Weight Regression", abline(lm(x~y)),cex = 1.3,pch 
+= 16,xlab = "Weight in Kg",ylab = "Height in cm") dev.off() 
 
-Input: 
-MainActivity.java: package com.example.mydialoguefragment; import android.os.Bundle; import android.view.Menu; import android.view.MenuItem; import android.widget.Toast; import androidx.activity.EdgeToEdge; import androidx.appcompat.app.AlertDialog; import androidx.appcompat.app.AppCompatActivity; import androidx.core.graphics.Insets; import androidx.core.view.ViewCompat; import androidx.core.view.WindowInsetsCompat; public class MainActivity extends AppCompatActivity 
-{     @Override     protected void onCreate(Bundle savedInstanceState) 
-    { 
-        super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main); 
-    } 
-    @Override 
-    public boolean onCreateOptionsMenu(Menu menu) 
-    { 
-        getMenuInflater().inflate(R.menu.main_menu,menu);         return true;     } 
-    @Override     public boolean onOptionsItemSelected(MenuItem item) 
-    { 
-        if (item.getItemId()==R.id.simple_dialog) 
-        { 
-           showSimpleDialog();             return true; 
-        } 
-        if(item.getItemId()==R.id.dialog_fragment) 
-        { 
-            MyDialogFragment dialog=new MyDialogFragment();             dialog.show(getSupportFragmentManager(), 
-                    "MyDialog");             return true; 
-        } 
-        return super.onOptionsItemSelected(item); 
-    } 
-    private void showSimpleDialog() 
-    { 
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);         builder.setTitle("simple  dialog");         builder.setMessage("this is simple dialog");         builder.setPositiveButton("OK",(dialog,which)-> 
-                Toast.makeText(this,"Ok Clicked",Toast.LENGTH_SHORT).show());         builder.show(); 
-    } 
-} 
-activity_main.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent"   android:orientation="vertical"     android:gravity="center"> 
-    <TextView         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="this is menu box"         android:textSize="20sp" /> 
-</LinearLayout> main_menu.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"> 
-    <item         android:id="@+id/simple_dialog"         android:title="Simple Dialog"/> 
-    <item         android:id="@+id/dialog_fragment"         android:title="Dialog fragment"/> 
-</menu> 
-MyDialogFragment.java: 
-package com.example.mydialoguefragment; import android.app.Dialog; import android.os.Bundle; import androidx.annotation.NonNull; import androidx.appcompat.app.AlertDialog; import androidx.fragment.app.DialogFragment;    public class MyDialogFragment extends DialogFragment{ 
-        @NonNull         @Override 
-        public Dialog onCreateDialog(Bundle savedInstanceState) {             AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());             builder.setTitle("dialog Fragment");             builder.setMessage("this is dialog fragment");             builder.setPositiveButton("OK",(dialog,which)->                    dismiss());             return builder.create(); 
-        } 
-    } 
  
   
  
+
+Practical 6 
+
+
+Aim: Perform the logistic regression on the given data warehouse data using R/Python. 
+
+
+Code: quality <-read.csv(‘C:/Users/Vishwakarma vinay/Downloads/quality.csv’) table(quality$PoorCare) install.packages("caTools") library(caTools) Warning message: package ‘caTools’ was built under R version 3.5.2  set.seed(88)  split = sample.split(quality$PoorCare, SplitRatio = 0.75)  
+split 
   
+qualityTrain = subset(quality, split == TRUE) qualityTest = subset(quality, split == FALSE) > nrow(qualityTrain) 
+QualityLog = glm(PoorCare ~ OfficeVisits + Narcotics,data=qualityTrain, family=binomial) summary(QualityLog) predictTrain = predict(QualityLog, type="response") 
+ROCRpred = prediction(predictTrain, qualityTrain$PoorCare)  ROCRperf = performance(ROCRpred, "tpr", "fpr")   plot(ROCRperf)  
  
-Practical No: 7 
-
-
-
-
-
-Aim:Programs on Intents,Event,Listeners and Adapters The Android Intent class,using Events and event listeners. 
-
-
-
-
-Input: 
-MainActivity.java: package com.example.p7; import android.content.Intent; import android.net.Uri; import android.os.Bundle; import android.widget.ArrayAdapter; import android.widget.Button; import android.widget.ListView; import android.widget.Toast; import androidx.activity.EdgeToEdge; import androidx.appcompat.app.AppCompatActivity; import androidx.core.graphics.Insets; import androidx.core.view.ViewCompat; import androidx.core.view.WindowInsetsCompat; public class MainActivity extends AppCompatActivity { 
-    Button btnExplicit,btnImplicit,btnClick; 
-    ListView listView; 
-    String fruits[]={"Apple","Banana","Mango","Orange"}; 
-    @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         btnExplicit=findViewById(R.id.btnExplicit);         btnImplicit=findViewById(R.id.btnImplicit);         btnClick=findViewById(R.id.btnClick);         listView=findViewById(R.id.listView);         btnExplicit.setOnClickListener(v->{ 
-            Intent i=new Intent(MainActivity.this,SecondActivity.class);             startActivity(i); 
-        }); 
-        btnImplicit.setOnClickListener(v->{ 
-            Intent i=new Intent(Intent.ACTION_VIEW, Uri.parse("https://google.com"));             startActivity(i); 
-        }); 
-        btnClick.setOnClickListener(v->{ 
-            Toast.makeText(MainActivity.this,"button 
-Clicked!",Toast.LENGTH_SHORT).show(); 
-        }); 
-        ArrayAdapter<String>adapter=new  
-ArrayAdapter<>(this, android.R.layout.simple_list_item_1,fruits);         listView.setAdapter(adapter); 
-        listView.setOnItemClickListener( (parent,view,position,id)->                 Toast.makeText(MainActivity.this,"You selected:"+fruits[position],Toast.LENGTH_SHORT).show()); 
-    } 
-} 
-activity_main.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     android:id="@+id/main"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:gravity="center"     android:orientation="vertical"     android:padding="20dp"> 
-    <Button         android:layout_width="match_parent"         android:layout_height="wrap_content"         android:text="Open Second Activity"         android:id="@+id/btnExplicit" > 
-    </Button> 
-     
-<Button         android:layout_width="match_parent"         android:layout_height="wrap_content"         android:text="Open Google"         android:id="@+id/btnImplicit"> 
-</Button>     <Button         android:layout_width="match_parent"         android:layout_height="wrap_content"         android:text="Click Event"         android:id="@+id/btnClick"> 
-    </Button>     <ListView         android:id="@+id/listView"         android:layout_width="match_parent"         android:layout_height="match_parent"/> 
-</LinearLayout> 
- 
-activity_second.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     android:id="@+id/main"     android:layout_width="match_parent"     android:layout_height="match_parent"     android:gravity="center"     android:orientation="vertical"> 
-    <TextView         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="This is second activity"         android:textSize="22sp"/> 
-</LinearLayout> 
+plot(ROCRperf, colorize=TRUE)  
+plot(ROCRperf, colorize=TRUE, print.cutoffs.at=seq(0,1,by=0.1), text.adj=c(-0.2,1.7)) 
  
  
  
  
- 
-Practical No: 8
+  
+Practical 7 
 
 
+Aim: Write a Python program to read data from a CSV file, perform simple data analysis, and generate basic insights. (Use Pandas is a Python library). 
 
 
-
-Aim: Program on Services, Notification and Broadcast Receiver. 
-
-
-
-
-Input: 
-activity_main.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent"   android:gravity="center"     android:orientation="vertical"> 
-    <TextView         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="Service,Notification and Broadcast Receiver"         android:textSize="18sp” /> 
-</LinearLayout> 
- 
-MainActivity.java:- package com.example.practical8; import android.app.Notification; import android.app.NotificationChannel; import android.app.NotificationManager; import android.app.Service; import android.content.Intent; import android.os.Build; import android.os.Bundle; import androidx.activity.EdgeToEdge; import androidx.appcompat.app.AppCompatActivity; import androidx.core.app.NotificationChannelCompat; import androidx.core.graphics.Insets; import androidx.core.view.ViewCompat; import androidx.core.view.WindowInsetsCompat; public class MainActivity extends AppCompatActivity {     @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         startService(new Intent(this,MyService.class));         NotificationManager 
-nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) 
-        { 
-            NotificationChannel channel=new 
-NotificationChannel("1","Channel",NotificationManager.IMPORTANCE_DEFAULT);             nm.createNotificationChannel(channel); 
-        } 
-        Notification notification=null; 
-        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O) 
-        { 
-            notification=new Notification.Builder(this,"1") 
-                    .setContentTitle("Ty It") 
-                .setContentText("All in One program") 
-                    .setSmallIcon(android.R.drawable.ic_dialog_info) 
-                    .build(); 
-        } 
-        nm.notify(1,notification); 
-        Intent intent=new Intent(this,MyReceiver.class);         sendBroadcast(intent); 
-   } 
-} 
- 
-MyService.java:- package com.example.practical8; import android.app.Service; import android.content.Context; import android.content.Intent; import android.os.IBinder; import android.widget.Toast; public class MyService extends Service { 
-    @Override     public void onCreate() {         super.onCreate(); 
-        Toast.makeText(this,"Service Started",Toast.LENGTH_SHORT).show(); 
-    } 
-    @Override     public IBinder onBind(Intent intent){         return null; 
-    } 
-} 
- 
-MyReceiver.java:- package com.example.practical8; import android.app.Service; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; import android.os.IBinder; import android.widget.Toast; 
- 
-public class MyReceiver extends BroadcastReceiver 
-{ 
-    @Override 
-                public void onReceive(Context context,Intent intent) 
-        { 
-            Toast.makeText(context,"BroadCast Receiver",Toast.LENGTH_SHORT).show(); 
-        } 
-} 
+STEPS: 
+Step 1:- Install Required Library  
+Before running the program, you need to install Pandas.  
+Open a command prompt or terminal and type: pip install pandas 
+Step 2:- Open MS EXCEL Prepare a CSV File 
+Step 3:- Open PYTHON IDLE Write the Python Code : 
+import pandas as pd  file_path = "Book1.csv df = pd.read_csv(file_path)  print("\nz’‘ First 5 rows of the dataset:")  print(df.head()) # Show the first 5 rows  print("\n‘’zDataset Summary:") print(df.info())  print("\n‘’z Basic Statistics:") print(df.describe())  print("\n’‘zMissing Valuesin Each Column:")  print(df.isnull().sum()) print("\n‘’z Column Names:")  print(df.columns) if 'Salary' in df.columns:  
+print(f"\n’z‘ Average Salary: {df['Salary'].mean():.2f}")  if 'Age' in df.columns: print(f"\n‘’z Youngest Person's Age: {df['Age'].min()}")  print(f"‘’z Oldest Person's Age: {df['Age'].max()}")  if 'Gender' in df.columns:  
+print("\n‘’z Gender Distribution:")  print(df['Gender'].value_counts())  print ( "\n  Data Analysis Completed Successfully!")
 
   
  
-
+ 
 
  
-Practical No: 9 Aim: Database Programming with SQLite. 
-
-
-
-
-
-Input: 
-activity_main.xml: 
-<?xml version="1.0" encoding="utf-8"?> 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent" > 
-    <LinearLayout         android:layout_width="match_parent"         android:layout_height="wrap_content"         android:orientation="vertical"         android:padding="20dp"> 
-        <EditText             android:layout_width="match_parent"             android:layout_height="wrap_content"             android:id="@+id/etName"             android:hint="Enter Name(Insert)" /> 
-        <Button             android:layout_width="wrap_content"             android:layout_height="wrap_content"             android:id="@+id/btnAdd"             android:text="Save"             android:layout_marginTop="10dp"/> 
-        <EditText 
-            android:layout_width="match_parent"             android:layout_height="wrap_content"             android:id="@+id/etUpdateId"             android:hint="Enter ID to Update"             android:layout_marginTop="25dp"/> 
-        <EditText             android:layout_width="match_parent"             android:layout_height="wrap_content"             android:id="@+id/etUpdateName"             android:hint="New Name"/> 
-        <Button             android:layout_width="wrap_content"             android:layout_height="wrap_content"             android:id="@+id/btnUpdate"             android:text="Update"             android:layout_marginTop="10dp"/> 
-        <EditText             android:layout_width="match_parent"             android:layout_height="wrap_content"             android:id="@+id/etDeleteId"             android:hint="Enter ID to Delete"             android:layout_marginTop="25dp"/> 
-        <Button             android:layout_width="wrap_content"             android:layout_height="wrap_content"             android:id="@+id/btnDelete"             android:text="Delete" /> 
-        <Button             android:layout_width="wrap_content"             android:layout_height="wrap_content"             android:id="@+id/btnShow"             android:text="Show All"             android:layout_marginTop="25dp"/> 
-        <TextView             android:layout_width="match_parent"             android:layout_height="wrap_content"             android:id="@+id/tvResult"             android:textSize="18sp"             android:layout_marginTop="20dp"/> 
-    </LinearLayout> 
-</ScrollView> 
  
-MainActivity.java: 
-package com.example.p9; import androidx.appcompat.app.AppCompatActivity; import android.os.Bundle; import android.widget.*; 
-public class MainActivity extends AppCompatActivity {     EditText etName, etUpdateId, etUpdateName, etDeleteId; 
-    Button btnAdd, btnShow, btnUpdate, btnDelete; 
-    TextView tvResult; 
-    DBHelper db;     @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         etName = findViewById(R.id.etName);         etUpdateId = findViewById(R.id.etUpdateId);         etUpdateName = findViewById(R.id.etUpdateName);         etDeleteId = findViewById(R.id.etDeleteId);         btnAdd = findViewById(R.id.btnAdd);         btnShow = findViewById(R.id.btnShow);         btnUpdate = findViewById(R.id.btnUpdate);         btnDelete = findViewById(R.id.btnDelete);         tvResult = findViewById(R.id.tvResult);         db = new DBHelper(this);         btnAdd.setOnClickListener(v -> { 
-            String name = etName.getText().toString();             if (db.insertName(name)) { 
-                Toast.makeText(this, "Inserted!", Toast.LENGTH_SHORT).show();                 etName.setText(""); 
-            } else { 
-                Toast.makeText(this, "Error inserting!", Toast.LENGTH_SHORT).show(); 
-            } 
-        }); 
- 
-        btnUpdate.setOnClickListener(v -> { 
-            int id = Integer.parseInt(etUpdateId.getText().toString());             String newName = etUpdateName.getText().toString();             if (db.updateName(id, newName)) { 
-                Toast.makeText(this, "Updated!", Toast.LENGTH_SHORT).show(); 
-            } else { 
-                Toast.makeText(this, "ID not found!", Toast.LENGTH_SHORT).show(); 
-            } 
-        }); 
-        btnDelete.setOnClickListener(v -> {             int id = Integer.parseInt(etDeleteId.getText().toString());             if (db.deleteName(id)) { 
-                Toast.makeText(this, "Deleted!", Toast.LENGTH_SHORT).show(); 
-            } else { 
-                Toast.makeText(this, "ID not found!", Toast.LENGTH_SHORT).show(); 
-            } 
-        }); 
-        btnShow.setOnClickListener(v -> {             String data = db.getAllNames();             tvResult.setText(data); 
-        }); 
-    } 
-} 
- 
-DBHelper.java: 
-package com.example.p9; import android.content.ContentValues; import android.content.Context; import android.database.Cursor; import android.database.sqlite.SQLiteDatabase; import android.database.sqlite.SQLiteOpenHelper; public class DBHelper extends SQLiteOpenHelper {     public static final String DB_NAME = "StudentDB";     public static final String TABLE_NAME = "students";     public DBHelper(Context context) {         super(context, DB_NAME, null, 1); 
-    } 
-    @Override     public void onCreate(SQLiteDatabase db) { 
-        db.execSQL("CREATE TABLE " + TABLE_NAME + "(id INTEGER PRIMARY 
-KEY AUTOINCREMENT, name TEXT)"); 
-    } 
-    @Override     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);         onCreate(db); 
-    } 
-    public boolean insertName(String name) {         SQLiteDatabase db = this.getWritableDatabase();         ContentValues cv = new ContentValues();         cv.put("name", name);         long result = db.insert(TABLE_NAME, null, cv);         return result != -1; 
-    } 
-    public boolean updateName(int id, String newName) { 
-        SQLiteDatabase db = this.getWritableDatabase();         ContentValues cv = new ContentValues();         cv.put("name", newName); 
-        int result = db.update(TABLE_NAME, cv, "id=?", new String[]{String.valueOf(id)});         return result > 0; 
-    } 
-    public boolean deleteName(int id) { 
-        SQLiteDatabase db = this.getWritableDatabase();         int result = db.delete(TABLE_NAME, "id=?", new String[]{String.valueOf(id)});         return result > 0; 
-    } 
-    public String getAllNames() { 
-        SQLiteDatabase db = this.getReadableDatabase(); 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);         StringBuilder sb = new StringBuilder();         while (cursor.moveToNext()) {             sb.append(cursor.getInt(0)) 
-                    .append(" - ") 
-                    .append(cursor.getString(1)) 
-                    .append("\n"); 
-        }         cursor.close();         return sb.toString(); 
-    } 
-} 
+Practical 8(A) 
 
+
+Aim: Perform data visualization using Python on any sales data. 
+
+
+Code: import pandas as pd import matplotlib.pyplot as plt data=pd.read_csv(“C:/Users/Vishwakarma vinay/Downloads/quality.csv”) print(data.head(10)) plt.plot(data[‘InpatientDays’]) plt.plot(data[‘PoorCare’]) plt.title(“scatter Plot”) plt.xlabel(“Inpatient Days”) plt.ylabel(“Poor Care”) 
+plt.show() 
   
+ 
+ 
+ 
+ 
+ 
+Practical 8(B) 
+
+
+Aim: Perform data visualization using PowerBI on any sales data. 
+
+
+Steps: 
+1.	Open Power BI. 
+  
+2.	Take Blank Report template. 
+  
+3.	Download "products.xlsx" file from google chrome. 
+(Note: Take any sales data( in excel file) ) 
+  
+Step 4: Go to home -> excel workbook -> select the excel file from download. 
+  
+  
+5.	Your data will be enable in "Power Query Editor" window. 
+  
+6.	Go to again Power BI desktop window -> click on apply changes button. 
+  
+7.	Below the file menu -> click on report view -> right side of the window you will see visualization. 
+  
+8.	Take any graph you want or map -> beside the visualization you will see the data click on products and select the column what all you want to visualization -> you will see your visualization graph of your given data. 
+  
+Step 9: Take any graph you want to see the visualized data -> after the visualization step you will see the near data option click on it and select the column you want to add in your graph. 
+  
+Pie chart :
+  
+Stacked column chart: 
+  
+ 
+ 
+ 
+ 
+ 
  
  
  

@@ -1,4 +1,6 @@
-Practical 1: Packet Tracer - Configure Cisco Routers for OSPF MD5 authentication, NTP and Syslog server. 
+Practical 1: Packet Tracer - Configure Cisco Routers for OSPF MD5 authentication, NTP and Syslog server.
+
+
  
 TOPOLOGY: 
   
@@ -100,8 +102,13 @@ To troubleshoot and maintain R3, the administrator at the ISP must use SSH to ac
 R2# ssh –v 2 –l SSHadmin 10.2.2.1 
 Step 11: Check result. 
  
- 	 
+
+
+	 
 Practical 2: Packet Tracer - Configure AAA Authentication on Cisco Routers  
+
+
+
  
 TOPOLOGY: 
   
@@ -182,9 +189,6 @@ Step 2: Verify the RADIUS Server configuration.
 Step 3: Configure the RADIUS server specifics on R3. 
 R3(config)# radius-server host 192.168.3.2 
 R3(config)# radius-server key radiuspa55 
- 
- 
- 
 Step 4: Configure AAA login authentication for console access on R3. 
 R3(config)# aaa new-model 
 R3(config)# aaa authentication login default group radius local 
@@ -198,8 +202,13 @@ Username: Admin3
 Password: admin3pa55 
 Step 7: Check results. 
  
- 	  
+
+
+
+	  
 Practical 3: Configuring Extended ACLs  
+
+
  
 TOPOLOGY: 
   
@@ -211,8 +220,6 @@ R1 	G0/0 	172.22.34.65 	255.255.255.224 	N/A
 Server 	NIC 	172.22.34.62 	255.255.255.192 	172.22.34.1 
 PC1 	NIC 	172.22.34.66 	255.255.255.224 	172.22.34.65 
 PC2 	NIC 	172.22.34.98 	255.255.255.240 	172.22.34.97 
- 
- 
  
  
 Part 1: Configure, Apply and Verify an Extended Numbered ACL Step 1: Configure an ACL to permit FTP and ICMP. 
@@ -277,8 +284,13 @@ c.	Open the web browser on PC2 and enter the IP address of Server as the URL.
 The connection should be successful. 
   
  
- 	 
+
+
+	 
 Practical 4: Configuring IP ACLs to Mitigate Attacks.  
+
+
+
  
 TOPOLOGY: 
   
@@ -496,8 +508,12 @@ Unrecognized command
 Router(config-ipv6-acl)#deny tcp any host 2001:db8:1:a002::1 
  
  
+
+
  
 Practical 5: Configuring a Zone-based policy firewall  
+
+
  
 TOPOLOGY: 
   
@@ -590,8 +606,12 @@ From the PC-A command prompt, ping PC-C at 192.168.3.3. The ping should fail.
 Step 2: From R2, ping PC-C. 
 From R2, ping PC-C at 192.168.3.3. The ping should fail. 
  
- 	 
+
+
+	 
 Practical 6: Configuring IOS Intrusion Prevention System(IPS) using the CLI  
+
+
  
 TOPOLOGY: 
   
@@ -610,9 +630,6 @@ Part 1: Enable IOS IPS
 Step 1: Enable the Security Technology package 
   
 R1(config)# license boot module c1900 technology-package securityk9 
- 
- 
- 
  
 Step 2: Verify network connectivity. 
 a.	Ping from PC-C to PC-A 
@@ -663,8 +680,12 @@ Step 4: View the syslog messages
  
   
  
- 	  
+
+	  
 Practical 7: Packet Tracer Layer 2 Security  
+
+
+
  
 TOPOLOGY: 
   
@@ -740,8 +761,15 @@ SW-A(config)# interface range f0/5 - 22
 SW-A(config-if-range)# shutdown 
 SW-B(config)# interface range f0/5 - 22 
 SW-B(config-if-range)shutdown  
-Step 4: Check results. 
+Step 4: Check results.
+
+
+
+
 Practical 8: Layer 2 VLAN Security  
+
+
+
  
 TOPOLOGY: 
   
@@ -820,8 +848,12 @@ R1(config-line)# access-class 102 in
 PC> ssh -l SSHadmin 192.168.20.100 
 Step 5: Check results. 
  
- 	 	B.N.N. COLLEGE, BHIWANDI 
+ 
+	 
 Practical 9: Configure and verify a Site-to-Site IPsec VPN Using CLI  
+
+
+
  
 TOPOLOGY: 
   
